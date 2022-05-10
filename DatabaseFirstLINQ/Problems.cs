@@ -16,8 +16,8 @@ namespace DatabaseFirstLINQ
         public void RunLINQQueries()
         {
                             ProblemOne();
-            //            //ProblemTwo();
-            //            //ProblemThree();
+                            ProblemTwo();
+                            ProblemThree();
             //            //ProblemFour();
             //            //ProblemFive();
             //            //ProblemSix();
@@ -47,24 +47,30 @@ namespace DatabaseFirstLINQ
 
         }
 
-        //        private void ProblemTwo()
-        //        {
-        //            // Write a LINQ query that retrieves the users from the User tables then print each user's email to the console.
-        //            var users = _context.Users;
+        private void ProblemTwo()
+        {
+            // Write a LINQ query that retrieves the users from the User tables then print each user's email to the console.
+            var users = _context.Users;
 
-        //            foreach (User user in users)
-        //            {
-        //                Console.WriteLine(user.Email);
-        //            }
+            foreach (User user in users)
+            {
+                Console.WriteLine(user.Email);
+            }
 
-        //        }
+        }
 
-        //        private void ProblemThree()
-        //        {
-        //            // Write a LINQ query that gets each product where the products price is greater than $150.
-        //            // Then print the name and price of each product from the above query to the console.
+        private void ProblemThree()
+        {
+            // Write a LINQ query that gets each product where the products price is greater than $150.
+            // Then print the name and price of each product from the above query to the console.
 
-        //        }
+            var products = _context.Products;
+            foreach (Product product in products) {
+                if (product.Price > 150)
+                    Console.WriteLine($"Product: {product.Name} costs {product.Price}");
+                    }
+
+        }
 
         //        private void ProblemFour()
         //        {
