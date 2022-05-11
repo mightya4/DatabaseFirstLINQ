@@ -19,7 +19,7 @@ namespace DatabaseFirstLINQ
                             ProblemTwo();
                             ProblemThree();
                             ProblemFour();
-            //            //ProblemFive();
+                            ProblemFive();
             //            //ProblemSix();
             //            //ProblemSeven();
             //            //ProblemEight();
@@ -91,21 +91,22 @@ namespace DatabaseFirstLINQ
                 Console.WriteLine("-------------------------------------------\n");
             }
 
+        
+
+        private void ProblemFive()
+        {
+                // write a linq query that gets all of the users who registered before 2016
+                // then print each user's email and registration date to the console.
+                var dateString = DateTime.Parse("01 Jan 2016");
+                var UsersBefore2016 = _context.Users.ToList().FindAll(m => m.RegistrationDate < dateString);
+                Console.WriteLine("-------------------------------------------\n");
+                Console.WriteLine("Users who registered before 2016 Email: ");
+                foreach (var user in UsersBefore2016)
+                {
+                    Console.WriteLine($"{user.Email} Registration Date: {user.RegistrationDate}");
+                }
+                Console.WriteLine("\n-------------------------------------------");
         }
-
-        //        private void ProblemFive()
-        //        {
-        //            // Write a LINQ query that gets all of the users who registered BEFORE 2016
-        //            // Then print each user's email and registration date to the console.
-
-        //        }
-
-        //        private void ProblemSix()
-        //        {
-        //            // Write a LINQ query that gets all of the users who registered AFTER 2016 and BEFORE 2018
-        //            // Then print each user's email and registration date to the console.
-
-        //        }
 
         //        // <><><><><><><><> R Actions (Read) with Foreign Keys <><><><><><><><><>
 
