@@ -25,11 +25,11 @@ namespace DatabaseFirstLINQ
                             ProblemEight();
                             ProblemNine();
             //            //ProblemTen();
-                            ProblemEleven();
-                            ProblemTwelve();
-                            ProblemThirteen();
-            //            //ProblemFourteen();
-            //            //ProblemFifteen();
+                            //ProblemEleven();
+                            //ProblemTwelve();
+                            //ProblemThirteen();
+                            //ProblemFourteen();
+                            //ProblemFifteen();
             //            //ProblemSixteen();
             //            //ProblemSeventeen();
             //            //ProblemEighteen();
@@ -200,25 +200,35 @@ namespace DatabaseFirstLINQ
 
         }
 
-                private void ProblemThirteen()
-                {
-                    // Add the role of "Customer" to the user we just created in the UserRoles junction table using LINQ.
-                    var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).SingleOrDefault();
-                    var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
-                    UserRole newUserRole = new UserRole()
-                    {
-                        UserId = userId,
-                        RoleId = roleId
-                    };
-                    _context.UserRoles.Add(newUserRole);
-                    _context.SaveChanges();
-                }
+        private void ProblemThirteen()
+        {
+            // Add the role of "Customer" to the user we just created in the UserRoles junction table using LINQ.
+            var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).SingleOrDefault();
+            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
+            UserRole newUserRole = new UserRole()
+            {
+                UserId = userId,
+                RoleId = roleId
+            };
+            _context.UserRoles.Add(newUserRole);
+            _context.SaveChanges();
+        }
 
-        //        private void ProblemFourteen()
-        //        {
-        //            // Add the product you create to the user we created in the ShoppingCart junction table using LINQ.
+        private void ProblemFourteen()
+        {
+            // Add the product you create to the user we created in the ShoppingCart junction table using LINQ.
+            var productId = _context.Products.Where(p => p.Name == "Rice Krispies").Select(p => p.Id).SingleOrDefault();
+            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
+            ShoppingCart newShoppingCartItem = new ShoppingCart()
+            {
+                UserId = userId,
+                ProductId = productId
+            };
+            _context.ShoppingCarts.Add(newShoppingCartItem);
+            _context.SaveChanges();
 
-        //        }
+
+        }
 
         //        // <><> U Actions (Update) <><>
 
