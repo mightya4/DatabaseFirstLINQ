@@ -18,7 +18,7 @@ namespace DatabaseFirstLINQ
                             ProblemOne();
                             ProblemTwo();
                             ProblemThree();
-            //            //ProblemFour();
+                            ProblemFour();
             //            //ProblemFive();
             //            //ProblemSix();
             //            //ProblemSeven();
@@ -72,12 +72,26 @@ namespace DatabaseFirstLINQ
 
         }
 
-        //        private void ProblemFour()
-        //        {
-        //            // Write a LINQ query that gets each product that contains an "s" in the products name.
-        //            // Then print the name of each product from the above query to the console.
+        private void ProblemFour()
+        {
+    
+           
+                // Write a LINQ query that gets each product that contains an "s" in the products name.
+                // Then print the name of each product from the above query to the console.
+                var productNamesStartWithS = _context.Products.Select(p => p.Name).ToList();
+                Console.WriteLine("-------------------------------------------\n");
+                foreach (var product in productNamesStartWithS)
+                {
+                    if (product.ToLower().Contains("s"))
+                    {
+                        Console.WriteLine($"{product}");
+                    };
+                    ;
+                }
+                Console.WriteLine("-------------------------------------------\n");
+            }
 
-        //        }
+        }
 
         //        private void ProblemFive()
         //        {
