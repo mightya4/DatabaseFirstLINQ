@@ -20,7 +20,7 @@ namespace DatabaseFirstLINQ
                             ProblemThree();
                             ProblemFour();
                             ProblemFive();
-            //            //ProblemSix();
+                            ProblemSix();
             //            //ProblemSeven();
             //            //ProblemEight();
             //            //ProblemNine();
@@ -100,12 +100,28 @@ namespace DatabaseFirstLINQ
                 var dateString = DateTime.Parse("01 Jan 2016");
                 var UsersBefore2016 = _context.Users.ToList().FindAll(m => m.RegistrationDate < dateString);
                 Console.WriteLine("-------------------------------------------\n");
-                Console.WriteLine("Users who registered before 2016 Email: ");
+                Console.WriteLine("Users who registered before 2016");
                 foreach (var user in UsersBefore2016)
                 {
-                    Console.WriteLine($"{user.Email} Registration Date: {user.RegistrationDate}");
+                    Console.WriteLine($" Email: {user.Email} Registration Date: {user.RegistrationDate}");
                 }
                 Console.WriteLine("\n-------------------------------------------");
+        }
+        private void ProblemSix()
+        {
+            // Write a LINQ query that gets all of the users who registered AFTER 2016 and BEFORE 2018
+            // Then print each user's email and registration date to the console.
+            var dateStringAfter2016 = DateTime.Parse("31 Dec 2016");
+            var dateStringBefore2018 = DateTime.Parse("01 Jan 2018");
+            var UsersBefore2018After2016 = _context.Users.ToList().FindAll(m => m.RegistrationDate < dateStringBefore2018).FindAll(m => m.RegistrationDate > dateStringAfter2016);
+             Console.WriteLine("-------------------------------------------\n");
+            Console.WriteLine("Users who registered after 2016 and before 2018 ");
+            foreach (var user in UsersBefore2018After2016)
+            {
+                Console.WriteLine($"Email: {user.Email} Registration Date: {user.RegistrationDate}");
+            }
+
+
         }
 
         //        // <><><><><><><><> R Actions (Read) with Foreign Keys <><><><><><><><><>
