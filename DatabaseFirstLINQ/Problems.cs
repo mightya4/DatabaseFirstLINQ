@@ -30,7 +30,7 @@ namespace DatabaseFirstLINQ
                             //ProblemThirteen();
                             //ProblemFourteen();
                             ProblemFifteen();
-            //            //ProblemSixteen();
+                            ProblemSixteen();
             //            //ProblemSeventeen();
             //            //ProblemEighteen();
             //            //ProblemNineteen();
@@ -241,11 +241,14 @@ namespace DatabaseFirstLINQ
             _context.SaveChanges();
         }
 
-        //        private void ProblemSixteen()
-        //        {
-        //            // Update the price of the product you created to something different using LINQ.
-
-        //        }
+        private void ProblemSixteen()
+        {
+            // Update the price of the product you created to something different using LINQ.
+            var product = _context.Products.Where(u => u.Price == 50).SingleOrDefault();
+            product.Price = 100;
+            _context.Products.Update(product);
+            _context.SaveChanges();
+        }
 
         //        private void ProblemSeventeen()
         //        {
