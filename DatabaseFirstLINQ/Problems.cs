@@ -33,8 +33,9 @@ namespace DatabaseFirstLINQ
                             //ProblemSixteen();
                             //ProblemSeventeen();
                             //ProblemEighteen();
-            //            //ProblemNineteen();
-            //            //ProblemTwenty();
+                            //ProblemNineteen();
+                            //ProblemTwenty();
+                            BonusOne();
         }
 
         //        // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -304,12 +305,25 @@ namespace DatabaseFirstLINQ
 
         //        // <><><><><><><><> BONUS PROBLEMS <><><><><><><><><>
 
-        //        private void BonusOne()
-        //        {
-        //            // Prompt the user to enter in an email and password through the console.
-        //            // Take the email and password and check if the there is a person that matches that combination.
-        //            // Print "Signed In!" to the console if they exists and the values match otherwise print "Invalid Email or Password.".
-        //        }
+        private void BonusOne()
+        {
+            // Prompt the user to enter in an email and password through the console.
+            // Take the email and password and check if the there is a person that matches that combination.
+            // Print "Signed In!" to the console if they exists and the values match otherwise print "Invalid Email or Password.".
+            Console.Write("Enter your email: ");
+            var getUserEmail = Console.ReadLine().ToLower();
+            Console.Write("Enter your password: ");
+            var getUserPass = Console.ReadLine();
+            var validateUserEmail = _context.Users.Where(sc => sc.Email == getUserEmail).Where(sc => sc.Password == getUserPass);
+            if (validateUserEmail.Any())
+            {
+                Console.WriteLine("Signed In!");
+            }
+            else
+            {
+                Console.WriteLine("Invalid Email or Password.");
+            }
+        }
 
         //        private void BonusTwo()
         //        {
