@@ -15,27 +15,28 @@ namespace DatabaseFirstLINQ
         }
         public void RunLINQQueries()
         {
-                            //ProblemOne();
-                            //ProblemTwo();
-                            //ProblemThree();
-                            //ProblemFour();
-                            //ProblemFive();
-                            //ProblemSix();
-                            //ProblemSeven();
-                            //ProblemEight();
-                            //ProblemNine();
-                            ProblemTen();
-                            //ProblemEleven();
-                            //ProblemTwelve();
-                            //ProblemThirteen();
-                            //ProblemFourteen();
-                            //ProblemFifteen();
-                            //ProblemSixteen();
-                            //ProblemSeventeen();
-                            //ProblemEighteen();
-                            //ProblemNineteen();
-                            //ProblemTwenty();
-                            BonusOne();
+                    //ProblemOne();
+                    //ProblemTwo();
+                    //ProblemThree();
+                    //ProblemFour();
+                    //ProblemFive();
+                    //ProblemSix();
+                    //ProblemSeven();
+                    //ProblemEight();
+                    //ProblemNine();
+                    //ProblemTen();
+                    //ProblemEleven();
+                    //ProblemTwelve();
+                    //ProblemThirteen();
+                    //ProblemFourteen();
+                    //ProblemFifteen();
+                    //ProblemSixteen();
+                    //ProblemSeventeen();
+                    //ProblemEighteen();
+                    //ProblemNineteen();
+                    //ProblemTwenty();
+                    //BonusOne();
+                    BonusTwo();
         }
 
         //        // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -325,11 +326,34 @@ namespace DatabaseFirstLINQ
             }
         }
 
-        //        private void BonusTwo()
-        //        {
-        //            // Write a query that finds the total of every users shopping cart products using LINQ.
-        //            // Display the total of each users shopping cart as well as the total of the toals to the console.
-        //        }
+        private void BonusTwo()
+        {
+            // Write a query that finds the total of every users shopping cart products using LINQ.
+            // Display the total of each users shopping cart as well as the total of the toals to the console.
+            var customerUsers = _context.ShoppingCarts;
+            var listOfUserByEmail = _context.Users.ToList();
+            var totalOfEachUserShoppingCart = customerUsers.Include(u => u.User).Include(p => p.Product).Select(sc => sc.Product.Price);
+            foreach (var total in totalOfEachUserShoppingCart)
+            {
+                
+                Console.WriteLine($"The sum of the total every user cart is ${totalOfEachUserShoppingCart}.");
+            }
+            
+            Console.WriteLine("-------------------------------------------\n");
+            var totalProductsPricesList = customerUsers.Include(u => u.User).Include(p => p.Product).Select(sc => sc.Product.Price).Sum();
+            Console.WriteLine($"The sum of the total every user cart is ${totalProductsPricesList}.");
+            Console.WriteLine("-------------------------------------------\n");
+
+
+            foreach(var userEmail in listOfUserByEmail)
+            {
+                var priceOfCurrentUserShoppingCart = customerUsers.Include(u => u.User).Include(p => p.Product).Where(u => u.User.Email == userEmail.Email).Select(sc => sc.Product.Price).Sum();
+                Console.WriteLine($"User email: {userEmail.Email} | Total of user shopping cart is  ${priceOfCurrentUserShoppingCart}");
+            }
+            
+            
+
+        }
 
         //        // BIG ONE
         //        private void BonusThree()
